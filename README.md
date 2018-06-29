@@ -5,7 +5,7 @@ A very simple Snake game written in vue.js,just because of interest.
 
 It took me a day to complete a Snake game based vue.JS.
 
-Very simple & very easy.just because of personal interest.
+Just because of personal interest.very simple & very easy.
 
 You can click the link below to experience:
 
