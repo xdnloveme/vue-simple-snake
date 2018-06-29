@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>小游戏</title>
+</head>
+<link href="css/index.css" rel="stylesheet">
+<body>
+<div id="container" :style="containerStyle" class="container">
+  <div v-show="!isStart" class="mask">
+    <div v-show="isSelectDiffcult && !isShowScore" :style="diffcultChoose" class="diffcultChoose">
+      <a :style="btnStyle" @click="chooseDiff('easy')" href="javascript:;">EASY</a>
+      <a :style="btnStyle" @click="chooseDiff('normal')" href="javascript:;">NORMAL</a>
+      <a :style="btnStyle" @click="chooseDiff('hard')" href="javascript:;">HARD</a>
+    </div>
+    <div v-show="!isSelectDiffcult && !isShowScore" :style="menuStyle" class="btn-group">
+      <h1 :style="titleStyle">BUG FIGHTING</h1>
+      <p :style="pStyle">DIFFCULT : {{diffcult==200?"EASY":diffcult==50?'HARD':'NORMAL'}}</p>
+      <a :style="btnStyle" @click="start()" class="primary" href="javascript:;">START</a>
+      <a :style="btnStyle" @click="isSelectDiffcult = true" href="javascript:;">DIFFCULTY</a>
+      <a :style="btnStyle" @click="showScore()" href="javascript:;">SCORE</a>
+    </div>
+    <div v-show="!isSelectDiffcult && isShowScore" :style="menuStyle" class="scoreWell">
+      <h1 :style="titleStyle">HEIGH SCORE</h1>
+      <p :style="pStyle">THE MOST : {{highScore}}<br><br>THE DIFFCULT : {{highScoreDiffcult}}</p>
+      <a :style="btnStyle" @click="isShowScore = false;" href="javascript:;" class="primary">MENU</a>
+    <a :style="btnStyle" @click="clearScore()" href="javascript:;">CLEAR</a>
+    </div>
+  </div>
+  <div v-show="isFailedFlag" class="failed mask">
+    <h1 :style="titleStyle">YOU LOSE</h1>
+    <p :style="pStyle">SCORE : {{score}}</p>
+    <p style="margin-bottom: 30px;font-size: 14px;font-style: italic;font-weight: 300;color:#666;">:-D YOU EAT {{snakeArr.length-4}} BUGS</p>
+    <a @click="start()" :style="btnStyle" class="primary" href="javascript:;">RESTART</a>
+    <a @click="isFailedFlag = false;isStart = false;" :style="btnStyle" href="javascript:;">MENU</a>
+  </div>
+  <div :style="[isSnake($key) && isSnakeHead($key) && isStart?{backgroundColor:'#888'}:'',itemStyle]" :class="[isSnake($key) && isStart?'snake':'',food==$key && isStart?'food':'']" v-for="(item,$key) in 576" class="item"></div>
+</div>
+
+<script type="text/javascript" src="vue.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+
+</body>
+</html>
